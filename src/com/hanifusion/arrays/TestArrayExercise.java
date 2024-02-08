@@ -9,6 +9,7 @@ public class TestArrayExercise {
         array.insert(40);
         array.insert(50);
         array.removeAt(1);
+        System.out.println(array.indexOf(100));//check it contains particular value or not
         array.print();
     }
 }

@@ -8,6 +8,16 @@ public class ArrayExercise {
         items = new int[length];
     }
 
+    public int indexOf(int item) {
+        //if we find it, return index
+        for (int i = 0; i < count; i++) {
+            if (items[i] == item)
+                return i;
+        }
+        //otherwise, return -1
+        return -1;
+    }
+
     public void insert(int item) {
         // if the array is full, resize it.
         if (items.length == count) {
