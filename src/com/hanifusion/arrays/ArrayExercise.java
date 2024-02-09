@@ -1,8 +1,8 @@
 package com.hanifusion.arrays;
 
 public class ArrayExercise {
-    private int[] items;
-    private int count;
+    public int[] items;
+    public int count;
 
     public ArrayExercise(int length) {
         items = new int[length];
@@ -20,16 +20,9 @@ public class ArrayExercise {
 
     public void insert(int item) {
         // if the array is full, resize it.
-        if (items.length == count) {
-            // create a new array (twice the size)
-            int[] newItems = new int[count * 2];
-            // copy all the existing items
-            for (int i = 0; i < count; i++) {
-                newItems[i] = items[i];
-            }
-            // set "items" to the new array
-            items = newItems;
-        }
+        if (items.length == count)
+            resizeArray();
+
         // Add the new item at the end
         items[count++] = item;
     }
@@ -51,7 +44,18 @@ public class ArrayExercise {
 
     public void print() {
         for (int i = 0; i < count; i++) {
-            System.out.println(items[i]);
+            System.out.print(items[i] + " ");
         }
+    }
+
+    public void resizeArray() {
+        // create a new array (twice the size)
+        int[] newItems = new int[count * 2];
+        // copy all the existing items
+        for (int i = 0; i < count; i++) {
+            newItems[i] = items[i];
+        }
+        // set "items" to the new array
+        items = newItems;
     }
 }
