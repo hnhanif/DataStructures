@@ -14,6 +14,7 @@ public class LinkedList {
 
     private Node head;
     private Node tail;
+    private int size = 0;
 
     public void addLast(int item) {
         Node node = new Node(item);
@@ -24,6 +25,7 @@ public class LinkedList {
             tail.next = node;
             tail = node;
         }
+        size++;
     }
 
     public void addFirst(int item) {
@@ -34,6 +36,7 @@ public class LinkedList {
             node.next = head;
             head = node;
         }
+        size++;
     }
 
     public int indexOf(int item) {
@@ -57,29 +60,35 @@ public class LinkedList {
         if (isEmpty())
             throw new NoSuchElementException();
 
-        if (head == tail) {
+        if (head == tail)
             head = tail = null;
-            return;
+        else {
+            Node second = head.next;
+            head.next = null;
+            head = second;
         }
-
-        Node second = head.next;
-        head.next = null;
-        head = second;
+        size--;
     }
 
     public void removeLast() {
         //[10 -> 20 -> 30]
         if (isEmpty()) throw new NoSuchElementException();
 
-        if (head == tail) {
+        if (head == tail)
             head = tail = null;
-            return;
+        else {
+            Node previous = getPrevious(tail);
+            tail = previous;
+            tail.next = null;
         }
-        Node previous = getPrevious(tail);
-        tail = previous;
-        tail.next = null;
 
+        size--;
     }
+
+    public int size() {
+        return size;
+    }
+
 
     public void print() {
         Node current = head;
@@ -88,6 +97,17 @@ public class LinkedList {
             current = current.next;
         }
         System.out.println();
+    }
+
+    public int[] toArray() {
+        int[] array = new int[size];
+        int index = 0;
+        Node current = head;
+        while (current != null) {
+            array[index++] = current.value;
+            current = current.next;
+        }
+        return array;
     }
 
     private boolean isEmpty() {
