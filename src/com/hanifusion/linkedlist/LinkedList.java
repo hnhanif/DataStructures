@@ -67,6 +67,20 @@ public class LinkedList {
         head = second;
     }
 
+    public void removeLast() {
+        //[10 -> 20 -> 30]
+        if (isEmpty()) throw new NoSuchElementException();
+
+        if (head == tail) {
+            head = tail = null;
+            return;
+        }
+        Node previous = getPrevious(tail);
+        tail = previous;
+        tail.next = null;
+
+    }
+
     public void print() {
         Node current = head;
         while (current != null) {
@@ -78,6 +92,16 @@ public class LinkedList {
 
     private boolean isEmpty() {
         return head == null;
+    }
+
+    private Node getPrevious(Node node) {
+        Node current = head;
+        while (current != null) {
+            if (current.next == node)
+                return current;
+            current = current.next;
+        }
+        return null;
     }
 
 }
