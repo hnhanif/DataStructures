@@ -15,5 +15,7 @@ public class TestLinkedList {
         linkedList.reverse();
         int[] reverseArray = linkedList.toArray();
         System.out.println("Reverse Array: " + Arrays.toString(reverseArray));
+
+        System.out.println(linkedList.getKthFromTheEnd(2));//20
     }
 }
