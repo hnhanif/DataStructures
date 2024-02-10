@@ -10,7 +10,10 @@ public class TestLinkedList {
         linkedList.addLast(30);
 
         int[] array = linkedList.toArray();
-        System.out.println(Arrays.toString(array));
+        System.out.println("Original Array: " + Arrays.toString(array));
 
+        linkedList.reverse();
+        int[] reverseArray = linkedList.toArray();
+        System.out.println("Reverse Array: " + Arrays.toString(reverseArray));
     }
 }

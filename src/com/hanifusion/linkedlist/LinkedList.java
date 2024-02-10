@@ -17,7 +17,7 @@ public class LinkedList {
     private int size = 0;
 
     public void addLast(int item) {
-        Node node = new Node(item);
+        var node = new Node(item);
 
         if (isEmpty())
             head = tail = node;//head = node & tail = node
@@ -29,7 +29,7 @@ public class LinkedList {
     }
 
     public void addFirst(int item) {
-        Node node = new Node(item);
+        var node = new Node(item);
         if (isEmpty())
             head = tail = node;
         else {
@@ -41,7 +41,7 @@ public class LinkedList {
 
     public int indexOf(int item) {
         int index = 0;
-        Node current = head;
+        var current = head;
         while (current != null) {
             if (current.value == item)
                 return index;
@@ -63,7 +63,7 @@ public class LinkedList {
         if (head == tail)
             head = tail = null;
         else {
-            Node second = head.next;
+            var second = head.next;
             head.next = null;
             head = second;
         }
@@ -77,7 +77,7 @@ public class LinkedList {
         if (head == tail)
             head = tail = null;
         else {
-            Node previous = getPrevious(tail);
+            var previous = getPrevious(tail);
             tail = previous;
             tail.next = null;
         }
@@ -91,7 +91,7 @@ public class LinkedList {
 
 
     public void print() {
-        Node current = head;
+        var current = head;
         while (current != null) {
             System.out.print(current.value + " ");
             current = current.next;
@@ -102,7 +102,7 @@ public class LinkedList {
     public int[] toArray() {
         int[] array = new int[size];
         int index = 0;
-        Node current = head;
+        var current = head;
         while (current != null) {
             array[index++] = current.value;
             current = current.next;
@@ -110,12 +110,30 @@ public class LinkedList {
         return array;
     }
 
+
+    public void reverse() {
+        if (isEmpty()) return;
+
+        var previous = head;
+        var current = head.next;
+        while (current != null) {
+            var next = current.next;
+            current.next = previous;
+            previous = current;
+            current = next;
+        }
+
+        tail = head;
+        tail.next = null;
+        head = previous;
+    }
+
     private boolean isEmpty() {
         return head == null;
     }
 
     private Node getPrevious(Node node) {
-        Node current = head;
+        var current = head;
         while (current != null) {
             if (current.next == node)
                 return current;
